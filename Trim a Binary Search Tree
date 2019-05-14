@@ -1,0 +1,39 @@
+//Trim a Binary Search Tree
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+class Solution {
+    func trimBST(_ root: TreeNode?, _ L: Int, _ R: Int) -> TreeNode? {
+       if root == nil {
+            return nil
+       }
+        var left = trimBST(root?.left, L, R)
+        var right = trimBST(root?.right, L, R)
+        
+        if let value = root?.val {
+            if L <= value && value <= R{
+                root?.left = left
+                root?.right = right
+            return root
+            }
+            if value > R {
+                return left
+            }
+            if value < L {
+                return right 
+            }
+            }
+        return root
+        }
+}
