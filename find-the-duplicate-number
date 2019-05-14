@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/find-the-duplicate-number/
+
+class Solution {
+    func findDuplicate(_ nums: [Int]) -> Int {
+        var dict:[Int:Int] = [:]
+        var count = 1
+        for i in nums {
+            if dict.keys.contains(i) {
+                dict[i] = count + 1
+            } else {
+                dict[i] = count
+            }
+        }
+        for (key,value) in dict {
+            if value > 1 {
+                return key
+            }
+        }
+        return 0
+    }
+}
