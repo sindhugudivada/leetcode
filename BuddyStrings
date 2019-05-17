@@ -1,0 +1,36 @@
+//https://leetcode.com/problems/buddy-strings/submissions/
+
+class Solution {
+    func buddyStrings(_ A: String, _ B: String) -> Bool {
+        var A_array = Array(A)
+        var B_array = Array(B)
+        var pos = 0
+        var first_A: Character = "!"
+        var first_B: Character = "!"
+        if A_array.count != B_array.count {
+            return false
+        }
+        if A_array.count == 0 {
+            return false
+        }
+        if A_array.count > Set(A_array).count && A == B {
+            return true
+        }
+        for i in 0..<A_array.count {
+            if A_array[i] != B_array[i] {
+                first_A = A_array[i]
+                first_B = B_array[i]
+                pos = i
+                break
+            }
+        }
+        for j in pos+1..<A_array.count {
+            if A_array[j] != B_array[j] {
+                if A_array[j] == first_B, B_array[j] == first_A {
+                    return A_array[j+1..<A_array.endIndex] == B_array[j+1..<A_array.endIndex] 
+                }
+            } 
+        }
+        return false
+    }
+}
