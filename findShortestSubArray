@@ -1,0 +1,9 @@
+rom collections import defaultdict
+class Solution:
+    def findShortestSubArray(self, nums: List[int]) -> int:
+        cache = defaultdict(list)
+        for index, num in enumerate(nums):
+            cache[num].append(index)
+        elements = max([len(lis) for lis in cache.values()])  
+        
+        return min([i[-1]-i[0] for i in cache.values() if len(i) == elements]) + 1
