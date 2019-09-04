@@ -1,0 +1,15 @@
+https://leetcode.com/problems/valid-parentheses/submissions/
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        map = {"(": ")","{": "}","[": "]"}
+        for ch in s:
+            if ch in map:
+                stack.append(ch)
+            else:
+                if not stack or map[stack.pop()] != ch:
+                    return False 
+        return not stack     
+    
+    
